@@ -31,12 +31,24 @@
     </ul>
     </li> --}}
 
-    <li class="{{ Request::is('admin/keywords') ? 'active' : '' }}">
-      <a href="{{ url('admin/keywords') }}">
-        <i class="fa fa-cog"></i> <span>Keyword</span>
+    <li class="{{ Request::is('admin/category') ? 'active' : '' }}">
+      <a href="{{ url('admin/category') }}">
+        <i class="fa fa-tag"></i> <span>Category</span>
       </a>
     </li>
-
+    <li class="{{ Request::is('admin/profile') ? 'active' : '' }}">
+      <a href="{{route('admin.profile')}}">
+        <i class="fa fa-user"></i> <span>Profile</span>
+      </a>
+    </li>
+    <li class="{{ Request::is('admin/logout') ? 'active' : '' }}">
+      <a href="#" class="logout">
+        <i class="fa fa-sign-out"></i> <span>Logout</span>
+      </a>
+      <form action="{{route('logout')}}" method="post" id="logout">
+        @csrf()
+      </form>
+    </li>
     </ul>
   </section>
 </aside>

@@ -2,28 +2,21 @@
 
 
 @section('content')
-<!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    {{ $moduleName }}
-    {{-- <small>it all starts here</small> --}}
+    {{ ucfirst($moduleName) }}
   </h1>
-
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#" active>{{ $moduleName }}</a></li>
+    <li><a href="#" active>{{ ucfirst($moduleName) }}</a></li>
   </ol>
 </section>
-
-<!-- Main content -->
 <section class="content">
-
-  <!-- Default box -->
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">{{ $moduleName }} List</h3>
+      <h3 class="box-title"></h3>
       <div class="box-tools">
-        <!-- <a href="{{ route('keywords.create') }}" class="btn btn-theme btn-sm">+ New</a> -->
+        <a href="{{ route('category.create') }}" class="btn btn-theme btn-sm">+ New {{ ucfirst($moduleName) }}</a>
       </div>
 
     </div>
@@ -33,8 +26,7 @@
           <tr>
             <th>Sr No.</th>
             <th>Name</th>
-            <th>Answer</th>
-            <th>Sitemap</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -44,21 +36,16 @@
           <tr>
             <th>Sr No.</th>
             <th>Name</th>
-            <th>Answer</th>
-            <th>Sitemap</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </tfoot>
       </table>
     </div>
-    <!-- /.box-body -->
     <div class="box-footer">
-
     </div>
-    <!-- /.box-footer-->
   </div>
 </section>
-<!-- /.content -->
 @endsection
 
 @section('script')
@@ -66,22 +53,18 @@
   var table = $('.datatable').DataTable({
     processing: true,
     serverSide: true,
-    ajax: "{{ route('getQuestionData') }}",
+    ajax: "{{ route('getCategoryData') }}",
     columns: [{
         data: 'DT_RowIndex',
         name: 'DT_RowIndex'
       },
       {
-        data: 'title',
-        name: 'title'
+        data: 'name',
+        name: 'name'
       },
       {
-        data: 'answer',
-        name: 'answer'
-      },
-      {
-        data: 'sitemap',
-        name: 'sitemap'
+        data: 'is_active',
+        name: 'is_active'
       },
       {
         data: 'action',

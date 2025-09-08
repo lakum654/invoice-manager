@@ -13,9 +13,9 @@
     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
       <span class="sr-only">Toggle navigation</span>
     </a>
-    <div class="searcharea">
+    <!-- <div class="searcharea">
       <input type="text" class="form-control" id="searchbar" name="search" placeholder="Search...">
-    </div>
+    </div> -->
 
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
@@ -33,12 +33,7 @@
             </a>
           </li> --}}
 
-        <li class="dropdown tasks-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-bell" aria-hidden="true"></i>
-            <!-- <span class="label label-danger">9</span> -->
-          </a>
-        </li>
+        
         <li class="dropdown user user-menu">
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

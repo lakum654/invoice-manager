@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\admin\KeywordController;
 use App\Http\Controllers\admin\QuestionController;
 use App\Http\Controllers\admin\SitemapController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\admin\KeywordController;
+use App\Http\Controllers\admin\CategoryController;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
@@ -32,8 +33,9 @@ Auth::routes();
 
 Route::view('/admin', 'admin.index');
 
-Route::group(['prefix' => 'admin/keywords', 'middleware' => ['auth'],], function () {
-    Route::get('/', [KeywordController::class, 'index'])->name('keywords');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth'],], function () {
+    //keyword routes
+    Route::get('/keywords', [KeywordController::class, 'index'])->name('keywords');
     Route::get('getKeywordsData', [KeywordController::class, 'getData'])->name('getKeywordsData');
     Route::get('create', [KeywordController::class, 'create'])->name('keywords.create');
     Route::post('store', [KeywordController::class, 'store'])->name('keywords.store');
@@ -42,6 +44,17 @@ Route::group(['prefix' => 'admin/keywords', 'middleware' => ['auth'],], function
     Route::get('/delete/{id}', [KeywordController::class, 'delete'])->name('keywords.delete');
     Route::get('/changeStatus/{id}', [KeywordController::class, 'changeStatus'])->name('keywords.changeStatus');
 
+    //category routes
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('getCategoryData', [CategoryController::class, 'getData'])->name('getCategoryData');
+    Route::get('create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+    Route::get('/changeStatus/{id}', [CategoryController::class, 'changeStatus'])->name('category.changeStatus');
+
+    //Profile routes
     Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile');
     Route::put('profile-update', [ProfileController::class, 'update'])->name('admin.profile.update');
 });

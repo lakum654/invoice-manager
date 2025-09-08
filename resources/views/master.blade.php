@@ -60,7 +60,7 @@
     });
 
     @if(Session::has('message'))
-            swal("Good job!", "{{ Session::get('message') }}", "success")
+            swal("Success!", "{{ Session::get('message') }}", "success")
     @endif
   });
  </script>

@@ -15,12 +15,12 @@ class CreateInvoiceProductTable extends Migration
     {
         Schema::create('invoice_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('invoice_id')->default(null);
-            $table->integer('product_id')->default(null);
+            $table->integer('invoice_id')->nullable();
+            $table->integer('product_id')->nullable();
             $table->string('product_name')->default('Cash')->comment('Cash,Online,Cheque');
-            $table->bigInteger('quantity')->default(0);
-            $table->bigInteger('price')->default(0.00);
-            $table->bigInteger('total')->default(0.00);
+            $table->decimal('quantity', 10, 2)->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('total', 10, 2)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

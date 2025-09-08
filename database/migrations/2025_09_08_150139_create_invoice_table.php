@@ -15,13 +15,13 @@ class CreateInvoiceTable extends Migration
     {
         Schema::create('invoice', function (Blueprint $table) {
             $table->id();
-            $table->integer('invoice_number')->default(null);
-            $table->integer('customer_id')->default(null);
+            $table->integer('invoice_number')->nullable();
+            $table->integer('customer_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable()->comment('Admin who created the invoice');
-            $table->bigInteger('sub_total')->default(0.00);
-            $table->bigInteger('total_discount')->default(0.00);
-            $table->bigInteger('total_charge')->default(0.00);
-            $table->bigInteger('total')->default(0.00);
+            $table->decimal('sub_total', 10, 2)->nullable();
+            $table->decimal('total_discount', 10, 2)->nullable();
+            $table->decimal('total_charge', 10, 2)->nullable();
+            $table->decimal('grand_total', 10, 2)->nullable();
             $table->boolean('is_paid')->comment('1-yes,0-no')->default(1);
             $table->string('payment_type')->default('Cash')->comment('Cash,Online,Cheque,Other');
             $table->longText('description')->nullable();
