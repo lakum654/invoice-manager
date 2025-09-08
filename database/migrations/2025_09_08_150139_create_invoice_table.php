@@ -18,9 +18,10 @@ class CreateInvoiceTable extends Migration
             $table->integer('invoice_number')->default(null);
             $table->integer('customer_id')->default(null);
             $table->unsignedBigInteger('user_id')->nullable()->comment('Admin who created the invoice');
-            $table->bigInteger('total')->default(0.00);
+            $table->bigInteger('sub_total')->default(0.00);
             $table->bigInteger('total_discount')->default(0.00);
             $table->bigInteger('total_charge')->default(0.00);
+            $table->bigInteger('total')->default(0.00);
             $table->boolean('is_paid')->comment('1-yes,0-no')->default(1);
             $table->string('payment_type')->default('Cash')->comment('Cash,Online,Cheque,Other');
             $table->longText('description')->nullable();

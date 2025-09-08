@@ -30,7 +30,8 @@ Route::get('/post/{id}/{slug}', [HomeController::class, 'single'])->name('front.
 
 Auth::routes();
 
-Route::view('/admin','admin.index');
+Route::view('/admin', 'admin.index');
+
 Route::group(['prefix' => 'admin/keywords', 'middleware' => ['auth'],], function () {
     Route::get('/', [KeywordController::class, 'index'])->name('keywords');
     Route::get('getKeywordsData', [KeywordController::class, 'getData'])->name('getKeywordsData');
@@ -41,11 +42,11 @@ Route::group(['prefix' => 'admin/keywords', 'middleware' => ['auth'],], function
     Route::get('/delete/{id}', [KeywordController::class, 'delete'])->name('keywords.delete');
     Route::get('/changeStatus/{id}', [KeywordController::class, 'changeStatus'])->name('keywords.changeStatus');
 
-    Route::get('profile',[ProfileController::class,'index'])->name('admin.profile');
-    Route::put('profile-update',[ProfileController::class,'update'])->name('admin.profile.update');
+    Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile');
+    Route::put('profile-update', [ProfileController::class, 'update'])->name('admin.profile.update');
 });
 
-Route::get('/test-pdf', function() {
-        $pdf = Pdf::loadView('invoice');
-        return $pdf->stream('invoice.pdf');
+Route::get('/test-pdf', function () {
+    $pdf = Pdf::loadView('invoice');
+    return $pdf->stream('invoice.pdf');
 });
