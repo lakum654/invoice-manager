@@ -15,9 +15,20 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->default('Color');
-            $table->string('logo')->default('logo.png');
-            $table->string('favicon')->default('favicon.jpg');
+            $table->string('name')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address_line_1')->nullable();
+            $table->string('address_line_2')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('pincode')->nullable();
+            $table->string('gst')->nullable();
+            $table->string('pan')->nullable();
+            $table->string('invoice_prefix')->nullable();
+            $table->string('invoice_remarks')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
             $table->timestamps();
         });
     }

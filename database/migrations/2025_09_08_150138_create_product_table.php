@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKeywordsTable extends Migration
+class CreateProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateKeywordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('keywords', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('has_more')->comment('1-true,0-false')->default(1);
-            $table->integer('page_no')->default(1);
+            $table->longText('description')->nullable();
+            $table->string('sku')->nullable();
+            $table->string('image')->nullable();
+            $table->string('price')->default(0);
+            $table->string('discount')->default(0);
+            $table->string('unit_type')->default('Piece')->comment('KG,Meter,Piece,Litre,Gram');
+            $table->integer('category_id')->default(null);
             $table->boolean('is_active')->comment('1-active,0-inactive')->default(1);
             $table->softDeletes();
             $table->timestamps();
@@ -31,6 +36,6 @@ class CreateKeywordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keyowords');
+        Schema::dropIfExists('product');
     }
 }
