@@ -67,6 +67,6 @@ Route::get('/test-pdf', function () {
 Route::get('/test-thermal-pdf', function () {
     $html = view('thermal-invoice', [])->render();
     $finalPdf = Pdf::loadHTML($html)
-        ->setPaper([0, 0, 226.77, 3000], 'portrait');
+        ->setPaper([0, 0, 226.77, 1000], 'portrait');
     return $finalPdf->stream('thermal-invoice.pdf');
 });
