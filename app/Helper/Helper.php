@@ -2,6 +2,10 @@
 
 namespace App\Helper;
 
+use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Invoice;
+use App\Models\Product;
 use App\Models\Question;
 use Session;
 use App\Models\Setting;
@@ -26,11 +30,22 @@ class Helper
             session()->flash('message', $msg);
         }
     }
-
-
     public static function settings()
     {
         return Setting::first();
+    }
+    public static function dashboard_count_data()
+    {
+        $category_count = Category::count();
+        $product_count = Product::count();
+        $customer_count = Customer::count();
+        $invoice_count = Invoice::count();
+        return [
+            'category_count' => $category_count,
+            'product_count' => $product_count,
+            'customer_count' => $customer_count,
+            'invoice_count' => $invoice_count
+        ];
     }
 
     public static function searchAnswer($questionId)

@@ -6,49 +6,39 @@
       </div>
       <div class="pull-left info">
         <p>{{ Auth::user()->name }}</p>
-        <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
     <ul class="sidebar-menu" data-widget="tree">
-      <!-- <li class="header">MAIN NAVIGATION</li> -->
       <li class="{{ Request::is('admin') ? 'active' : '' }}">
         <a href="{{ url('admin') }}">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
 
-      {{-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>User Managment </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users</a></li>
-      <li><a href="{{ url('roles') }}"><i class="fa fa-circle-o"></i> Role Permission</a></li>
-    </ul>
-    </li> --}}
-
-    <li class="{{ Request::is('admin/category') ? 'active' : '' }}">
-      <a href="{{ url('admin/category') }}">
-        <i class="fa fa-tag"></i> <span>Category</span>
-      </a>
-    </li>
-    <li class="{{ Request::is('admin/profile') ? 'active' : '' }}">
-      <a href="{{route('admin.profile')}}">
-        <i class="fa fa-user"></i> <span>Profile</span>
-      </a>
-    </li>
-    <li class="{{ Request::is('admin/logout') ? 'active' : '' }}">
-      <a href="#" class="logout">
-        <i class="fa fa-sign-out"></i> <span>Logout</span>
-      </a>
-      <form action="{{route('logout')}}" method="post" id="logout">
-        @csrf()
-      </form>
-    </li>
+      <li class="{{ Request::is('admin/category') ? 'active' : '' }}">
+        <a href="{{ url('admin/category') }}">
+          <i class="fa fa-tag"></i> <span>Category</span>
+        </a>
+      </li>
+      <li class="{{ Request::is('admin/product') ? 'active' : '' }}">
+        <a href="{{ url('admin/product') }}">
+          <i class="fa fa-tag"></i> <span>Product</span>
+        </a>
+      </li>
+      <li class="{{ Request::is('admin/profile') ? 'active' : '' }}">
+        <a href="{{route('admin.profile')}}">
+          <i class="fa fa-user"></i> <span>Profile</span>
+        </a>
+      </li>
+      <li class="{{ Request::is('admin/logout') ? 'active' : '' }}">
+        <a href="#" class="logout">
+          <i class="fa fa-sign-out"></i> <span>Logout</span>
+        </a>
+        <form action="{{route('logout')}}" method="post" id="logout">
+          @csrf()
+        </form>
+      </li>
     </ul>
   </section>
 </aside>

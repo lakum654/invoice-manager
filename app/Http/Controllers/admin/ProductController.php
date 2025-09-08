@@ -4,15 +4,15 @@ namespace App\Http\Controllers\admin;
 
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use DataTables;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
-    public $route = 'admin/category';
-    public $view  = 'admin/category.';
-    public $moduleName = 'category';
+    public $route = 'admin/product';
+    public $view  = 'admin/product.';
+    public $moduleName = 'product';
 
     public function index()
     {
@@ -22,13 +22,13 @@ class CategoryController extends Controller
 
     public function getData()
     {
-        $data = Category::get();
+        $data = Product::get();
         return Datatables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
-                $editUrl = route('category.edit', encrypt($row->id));
-                $deleteUrl = route('category.delete', encrypt($row->id));
-                $statusUrl = route('category.changeStatus', encrypt($row->id));
+                $editUrl = route('product.edit', encrypt($row->id));
+                $deleteUrl = route('product.delete', encrypt($row->id));
+                $statusUrl = route('product.changeStatus', encrypt($row->id));
                 $btn = '';
                 $btn .= '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm" style="margin-left:5px;"><i class="fa fa-pencil"> </i> Edit</a>';
                 // if ($row->is_active == 1) {
@@ -60,14 +60,10 @@ class CategoryController extends Controller
             'name' => 'required',
             'status' => 'required|in:1,0'
         ]);
-
-
-
-        Category::create([
+        Product::create([
             'name' => $request->name,
             'is_active' => $request->status
         ]);
-
         Helper::successMsg('insert', $this->moduleName);
         return redirect($this->route);
     }
@@ -75,25 +71,25 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $moduleName = $this->moduleName;
-        $category = Category::find(decrypt($id));
-        return view($this->view . '_form', compact('category', 'moduleName'));
+        $product = Product::find(decrypt($id));
+        return view($this->view . '_form', compact('product', 'moduleName'));
     }
 
     public function update(Request $request, $id)
     {
-        Category::find($id)->update(['name' => $request->name, 'is_active' => $request->status]);
+        Product::find($id)->update(['name' => $request->name, 'is_active' => $request->status]);
         Helper::successMsg('update', $this->moduleName);
         return redirect($this->route);
     }
 
     public function changeStatus($id)
     {
-        $status = Category::find(decrypt($id))->is_active;
+        $status = Product::find(decrypt($id))->is_active;
 
         if ($status == 1) {
-            Category::find(decrypt($id))->update(['is_active' => 0]);
+            Product::find(decrypt($id))->update(['is_active' => 0]);
         } else {
-            Category::find(decrypt($id))->update(['is_active' => 1]);
+            Product::find(decrypt($id))->update(['is_active' => 1]);
         }
 
         Helper::successMsg('custom', 'Status Change Successfully.');
@@ -102,9 +98,7 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        Category::find(decrypt($id))->delete();
-
-
+        Product::find(decrypt($id))->delete();
         Helper::successMsg('delete', $this->moduleName);
         return redirect($this->route);
     }

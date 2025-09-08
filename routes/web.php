@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\KeywordController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ProductController;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
@@ -34,16 +35,6 @@ Auth::routes();
 Route::view('/admin', 'admin.index');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'],], function () {
-    //keyword routes
-    Route::get('/keywords', [KeywordController::class, 'index'])->name('keywords');
-    Route::get('getKeywordsData', [KeywordController::class, 'getData'])->name('getKeywordsData');
-    Route::get('create', [KeywordController::class, 'create'])->name('keywords.create');
-    Route::post('store', [KeywordController::class, 'store'])->name('keywords.store');
-    Route::get('/{id}/edit', [KeywordController::class, 'edit'])->name('keywords.edit');
-    Route::put('/update/{id}', [KeywordController::class, 'update'])->name('keywords.update');
-    Route::get('/delete/{id}', [KeywordController::class, 'delete'])->name('keywords.delete');
-    Route::get('/changeStatus/{id}', [KeywordController::class, 'changeStatus'])->name('keywords.changeStatus');
-
     //category routes
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::get('getCategoryData', [CategoryController::class, 'getData'])->name('getCategoryData');
@@ -54,6 +45,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'],], function () {
     Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
     Route::get('/changeStatus/{id}', [CategoryController::class, 'changeStatus'])->name('category.changeStatus');
 
+    //product routes
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::get('getProductData', [ProductController::class, 'getData'])->name('getProductData');
+    Route::get('create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/changeStatus/{id}', [ProductController::class, 'changeStatus'])->name('product.changeStatus');
+
     //Profile routes
     Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile');
     Route::put('profile-update', [ProfileController::class, 'update'])->name('admin.profile.update');
@@ -62,4 +63,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'],], function () {
 Route::get('/test-pdf', function () {
     $pdf = Pdf::loadView('invoice');
     return $pdf->stream('invoice.pdf');
+});
+Route::get('/test-thermal-pdf', function () {
+    $html = view('thermal-invoice', [])->render();
+    $finalPdf = Pdf::loadHTML($html)
+        ->setPaper([0, 0, 226.77, 3000], 'portrait');
+    return $finalPdf->stream('thermal-invoice.pdf');
 });

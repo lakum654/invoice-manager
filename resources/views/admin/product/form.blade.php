@@ -7,7 +7,7 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="{{ route('category') }}">{{ ucfirst($moduleName) }}</a></li>
+    <li><a href="{{ route('product') }}">{{ ucfirst($moduleName) }}</a></li>
     <li><a href="#" active>Add {{ ucfirst($moduleName) }}</a></li>
   </ol>
 </section>
@@ -17,14 +17,14 @@
       <h3 class="box-title">Create New {{ ucfirst($moduleName) }}</h3>
     </div>
     <div class="box-body">
-      <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
         @csrf()
         <div class="form-group">
           <div class="row">
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label for="name">Name: *</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="category Name" value="{{ old('name') }}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" value="{{ old('name') }}">
                 <span class="error"> {{ $errors->first('name') }}</span>
               </div>
             </div>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="box-footer text-center">
-          <a href="{{ route('category') }}" class="btn btn-sm btn-default">Cancel</a>
+          <a href="{{ route('product') }}" class="btn btn-sm btn-default">Cancel</a>
           <input type="submit" value="Submit" class="btn btn-sm btn-info">
         </div>
       </form>
