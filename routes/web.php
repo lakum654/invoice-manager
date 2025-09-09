@@ -21,7 +21,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 |
 */
 
-Route::view('/', 'welcome')->name('front');
+Route::get('/', [HomeController::class, 'welcome'])->name('front');
 Route::get('/post/{id}/{slug}', [HomeController::class, 'single'])->name('front.single');
 // Route::get('/', function () {
 //     return view('auth/login');

@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    @include('layouts.headerscript')
+    @include('admin_layout.headerscript')
 </head>
 
 <body>
@@ -78,7 +78,7 @@
         </main>
     </div>
 
-    @include('layouts.footerscript')
+    @include('admin_layout.footerscript')
     <script>
         $(function() {
             $('input').iCheck({

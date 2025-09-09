@@ -34,6 +34,11 @@ class HomeController extends Controller
             ->onEachSide(1);
         return view('home', ['data' => $data]);
     }
+    public function welcome()
+    {
+        return redirect()->route('admin.index');
+        // return view('welcome');
+    }
     public function single($id, $slug)
     {
         $data = Question::where('answer_status', 1)
@@ -43,7 +48,5 @@ class HomeController extends Controller
             ->get();
         return view('single', ['data' => $data, 'answer_data' => $answer_data]);
     }
-    public function test()
-    {
-    }
+    public function test() {}
 }

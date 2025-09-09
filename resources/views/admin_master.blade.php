@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="{{ asset('public/setting') }}/{{ Helper::settings()->favicon }}">
   <!-- <link rel="shortcut icon" href="{{ asset('public/assets/images/favicon.ico') }}"> -->
   <!-- Daterangepicker css -->
-  @include('layouts.headerscript')
+  @include('admin_layout.headerscript')
   @yield('style')
 </head>
 
@@ -21,8 +21,8 @@
 
 
 
-    @include('layouts.navbar')
-    @include('layouts.sidebar')
+    @include('admin_layout.navbar')
+    @include('admin_layout.sidebar')
 
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
@@ -37,11 +37,11 @@
 
         </div>
       </div>
-      @include('layouts.footer')
+      @include('admin_layout.footer')
     </div>
     <!-- END wrapper -->
-    @include('layouts.theme_setting')
-    @include('layouts.footerscript')
+    @include('admin_layout.theme_setting')
+    @include('admin_layout.footerscript')
     @yield('script')
     <script>
       $(document).ready(function() {
