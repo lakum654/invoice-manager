@@ -1,68 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
   <title>{{ Helper::settings()->name }}</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" href="{{ asset('public/setting') }}/{{ Helper::settings()->favicon }}" type="image/gif" sizes="16x16">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="#" name="description" />
+  <meta content="#" name="author" />
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="{{ asset('public/setting') }}/{{ Helper::settings()->favicon }}">
+  <!-- <link rel="shortcut icon" href="{{ asset('public/assets/images/favicon.ico') }}"> -->
+  <!-- Daterangepicker css -->
   @include('layouts.headerscript')
-
-@yield('style')
-<style>
-.btn-theme{
-  background: #6969CD;
-  color: white;
-}
-.btn-theme:hover{
-  color: white;
-}
-.select2-container .select2-selection--single{
-  border-radius: 0px;
-  height: 35px;
-}
-.error{
-  color:red;
-  font-weight:bold;
-  font-size:12px;
-}
-</style>
+  @yield('style')
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
 
-<div class="wrapper">
-  @include('layouts.navbar')
-  @include('layouts.sidebar')
-<div class="content-wrapper">
-  @yield('content')
-</div>
-  @include('layouts.footer')
-</div>
-  @include('layouts.footerscript')
+<body>
+  <!-- Begin page -->
+  <div class="wrapper">
 
-  @yield('script')
- <script>
-  $(document).ready(function(){
-    //swal("Hello world!");
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-purple'
-    });
 
-    CKEDITOR.replace( 'description' );
 
-    $('.logout').on('click',function(e){
+    @include('layouts.navbar')
+    @include('layouts.sidebar')
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+      <div class="content">
+
+        <!-- Start Content-->
+        <div class="container-fluid">
+          @yield('content')
+
+        </div>
+      </div>
+      @include('layouts.footer')
+    </div>
+    <!-- END wrapper -->
+    @include('layouts.theme_setting')
+    @include('layouts.footerscript')
+    @yield('script')
+    <script>
+      $(document).ready(function() {
+
+        $('.logout').on('click', function(e) {
           e.preventDefault();
           $('#logout').submit();
-    });
+        });
 
-    @if(Session::has('message'))
-            swal("Success!", "{{ Session::get('message') }}", "success")
-    @endif
-  });
- </script>
+        @if(Session::has('message'))
+        swal("Success!", "{{ Session::get('message') }}", "success")
+        @endif
+      });
+    </script>
 </body>
+
 </html>

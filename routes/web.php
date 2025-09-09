@@ -32,29 +32,31 @@ Route::get('/post/{id}/{slug}', [HomeController::class, 'single'])->name('front.
 
 Auth::routes();
 
-Route::view('/admin', 'admin.index');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'],], function () {
-    //category routes
-    Route::get('/category', [CategoryController::class, 'index'])->name('category');
-    Route::get('getCategoryData', [CategoryController::class, 'getData'])->name('getCategoryData');
-    Route::get('create', [CategoryController::class, 'create'])->name('category.create');
-    Route::post('store', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-    Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
-    Route::get('/changeStatus/{id}', [CategoryController::class, 'changeStatus'])->name('category.changeStatus');
-
-    //product routes
-    Route::get('/product', [ProductController::class, 'index'])->name('product');
-    Route::get('getProductData', [ProductController::class, 'getData'])->name('getProductData');
-    Route::get('create', [ProductController::class, 'create'])->name('product.create');
-    Route::post('store', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-    Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
-    Route::get('/changeStatus/{id}', [ProductController::class, 'changeStatus'])->name('product.changeStatus');
-
+    Route::view('/', 'admin.index')->name('admin.index');
+    Route::group(['prefix' => 'category'], function () {
+        //category routes
+        Route::get('/', [CategoryController::class, 'index'])->name('category');
+        Route::get('/getCategoryData', [CategoryController::class, 'getData'])->name('getCategoryData');
+        Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+        Route::get('/changeStatus/{id}', [CategoryController::class, 'changeStatus'])->name('category.changeStatus');
+    });
+    Route::group(['prefix' => 'product'], function () {
+        //product routes
+        Route::get('/', [ProductController::class, 'index'])->name('product');
+        Route::get('/getProductData', [ProductController::class, 'getData'])->name('getProductData');
+        Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+        Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+        Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+        Route::get('/changeStatus/{id}', [ProductController::class, 'changeStatus'])->name('product.changeStatus');
+    });
     //Profile routes
     Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile');
     Route::put('profile-update', [ProfileController::class, 'update'])->name('admin.profile.update');

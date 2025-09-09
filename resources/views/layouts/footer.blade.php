@@ -1,13 +1,16 @@
-<footer class="all_footer main-footer">
-  <div class="container-fluid">
-    <div class="footersec">
-      <div class="row">
-        <div class="col-md-12 col-sm-4 col-xs-12">
-          <p>&copy; {{date('Y')}} {{ Helper::settings()->name }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+     <footer class="footer">
+       <div class="container-fluid">
+         <div class="row">
+           <div class="col-md-6">
+             <script>
+               document.write(new Date().getFullYear())
+             </script> © {{ Helper::settings()->name }}
+           </div>
+           <div class="col-md-6">
+             <div class="text-md-end footer-links d-none d-md-block">
 
-<div class="control-sidebar-bg"></div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </footer>
