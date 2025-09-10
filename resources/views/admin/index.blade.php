@@ -91,4 +91,8 @@
 @endsection
 
 @section('script')
+<!-- Apex Charts js -->
+<script src="{{ asset('public/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+<!-- Dashboard App js -->
+<script src="{{ asset('public/assets/js/pages/dashboard.js') }}"></script>
 @endsection

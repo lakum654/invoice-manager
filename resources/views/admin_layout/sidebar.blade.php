@@ -54,28 +54,27 @@
 
           <li class="side-nav-title mt-1"> Main</li>
 
-          <li class="side-nav-item {{ Request::is('admin.index') ? 'active' : '' }}">
-            <a href="{{route('admin.index')}}" class="side-nav-link {{ Request::is('admin.index') ? 'active' : '' }}">
+          <li class="side-nav-item {{ in_array(Route::currentRouteName(), ['admin.index']) ? 'menuitem-active' : '' }}">
+            <a href="{{route('admin.index')}}" class="side-nav-link {{ in_array(Route::currentRouteName(), ['admin.index']) ? 'active' : '' }}">
               <i class="ri-dashboard-2-fill"></i>
               <span> Dashboard </span>
             </a>
           </li>
-
-          <li class="side-nav-item">
+          <li class="side-nav-item {{ in_array(Route::currentRouteName(), ['category', 'category.create', 'category.edit']) ? 'menuitem-active' : '' }}">
             <a href="{{route('category')}}" class="side-nav-link">
-              <i class="ri-calendar-2-fill"></i>
+              <i class="ri-price-tag-line"></i>
               <span> Category </span>
             </a>
           </li>
 
-          <li class="side-nav-item">
+          <li class="side-nav-item {{ in_array(Route::currentRouteName(), ['product', 'product.create', 'product.edit']) ? 'menuitem-active' : '' }}">
             <a href="{{route('product')}}" class="side-nav-link">
-              <i class="ri-calendar-2-fill"></i>
+              <i class="ri-shopping-bag-line"></i>
               <span> Product </span>
             </a>
           </li>
 
-          <li class="side-nav-item">
+          <li class="side-nav-item {{ in_array(Route::currentRouteName(), ['admin.profile']) ? 'menuitem-active' : '' }}">
             <a href="{{route('admin.profile')}}" class="side-nav-link">
               <i class="ri-calendar-2-fill"></i>
               <span> Profile </span>

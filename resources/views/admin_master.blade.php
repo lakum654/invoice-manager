@@ -39,21 +39,16 @@
       </div>
       @include('admin_layout.footer')
     </div>
-    <!-- END wrapper -->
     @include('admin_layout.theme_setting')
     @include('admin_layout.footerscript')
     @yield('script')
+    @include('admin_layout.common_component')
     <script>
       $(document).ready(function() {
-
         $('.logout').on('click', function(e) {
           e.preventDefault();
           $('#logout').submit();
         });
-
-        @if(Session::has('message'))
-        swal("Success!", "{{ Session::get('message') }}", "success")
-        @endif
       });
     </script>
 </body>
